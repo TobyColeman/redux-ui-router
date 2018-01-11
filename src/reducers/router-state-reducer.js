@@ -1,5 +1,4 @@
-import _ from 'lodash'
-import { STATE_CHANGE_SUCCESS } from '../constants/action-types'
+import { STATE_CHANGE_FINISH } from '../constants/action-types'
 
 const INITIAL_STATE = {
   currentState: {
@@ -15,7 +14,7 @@ const INITIAL_STATE = {
  * state
  * @param {Object} initialState
  */
-export function routerStateReducerFactory (initialState) {
+export function routerStateReducerFactory (initialState, reducer) {
 	/**
 	 * Reducer of STATE_CHANGE_SUCCESS actions. Returns a state object
 	 * with { currentState, currentParams, prevState, prevParams }
@@ -25,10 +24,10 @@ export function routerStateReducerFactory (initialState) {
 	 * @return {Object} New state
 	 */
 	return (state = initialState, action) => {
-	  if (action.type !== STATE_CHANGE_SUCCESS) {
+	  if (action.type !== STATE_CHANGE_FINISH) {
 	    return state
 	  }
-	  return _.merge(initialState, action.payload)
+	  return action.payload
 	}
 }
 
